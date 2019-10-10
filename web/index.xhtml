@@ -7,5 +7,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
    <f:view>
       <h:outputLabel value="Hello, world"/>
+
+
+      <h:form>
+         <h:dataTable value="#{info.jeu}" var="jeu" border="1">
+            <h:column><f:facet name="header">Nom</f:facet>
+               <h:inputText value="#{jeu.nomJeu}" rendered="#{ligne.editable}" />
+               <h:outputText value="#{jeu.nomJeu}" rendered="#{not ligne.editable}" />
+            </h:column>
+            <h:column><f:facet name="header">Genre</f:facet>
+               <h:inputText value="#{jeu.genre}" rendered="#{ligne.editable}" />
+               <h:outputText value="#{jeu.genre}" rendered="#{not ligne.editable}" />
+            </h:column>
+            <h:column><f:facet name="header">Date de sortie</f:facet>
+               <h:inputText value="#{jeu.dateSortie}" rendered="#{ligne.editable}" />
+               <h:outputText value="#{jeu.dateSortie}" rendered="#{not ligne.editable}" />
+            </h:column>
+            <h:column><h:commandButton value="remove" action="#{listEtu.removeEtu(ligne)}" /></h:column>
+            <h:column><h:commandButton value="edit" action="#{listEtu.editAction(ligne)}" /></h:column>
+         </h:dataTable>
+         <h:commandButton value="Save Changes" action="#{listEtu.saveAction}" />
+      </h:form>
+
    </f:view>
 </html>
