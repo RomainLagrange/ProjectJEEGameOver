@@ -7,6 +7,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="ProjectJEEGameOver" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="omnifaces-3.3" />
+          <element id="library" level="project" name="PrimeFaces-6.1" />
+          <element id="library" level="project" name="OpenFaces-3.0" />
+          <element id="library" level="project" name="JPA 2.0-2.0" />
+        </element>
       </element>
     </root>
   </artifact>

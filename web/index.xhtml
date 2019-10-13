@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions">
    <f:view>
       <h:outputLabel value="Hello, world"/>
 
@@ -12,21 +13,50 @@
       <h:form>
          <h:dataTable value="#{jeuView.jeu}" var="jeu" border="1">
             <h:column><f:facet name="header">Nom</f:facet>
-               <h:inputText value="#{jeu.nomJeu}" rendered="#{ligne.editable}" />
-               <h:outputText value="#{jeu.nomJeu}" rendered="#{not ligne.editable}" />
+               <h:inputText value="#{jeu.nomJeu}" />
             </h:column>
             <h:column><f:facet name="header">Genre</f:facet>
-               <h:inputText value="#{jeu.genre}" rendered="#{ligne.editable}" />
-               <h:outputText value="#{jeu.genre}" rendered="#{not ligne.editable}" />
+               <h:inputText value="#{jeu.genre}" />
             </h:column>
             <h:column><f:facet name="header">Date de sortie</f:facet>
-               <h:inputText value="#{jeu.dateSortie}" rendered="#{ligne.editable}" />
-               <h:outputText value="#{jeu.dateSortie}" rendered="#{not ligne.editable}" />
+               <h:inputText value="#{jeu.dateSortie}" />
             </h:column>
-            <h:column><h:commandButton value="remove" action="#{listEtu.removeEtu(ligne)}" /></h:column>
-            <h:column><h:commandButton value="edit" action="#{listEtu.editAction(ligne)}" /></h:column>
+            <h:column><f:facet name="header">Editeur</f:facet>
+               <h:inputText value="#{jeu.editeur.nomJeu}" />
+            </h:column>
+            <h:column><h:commandButton value="remove" action="#{jeuView.removeEtu(ligne)}" /></h:column>
          </h:dataTable>
-         <h:commandButton value="Save Changes" action="#{listEtu.saveAction}" />
+         <h:commandButton value="Save Changes" action="#{jeuView.saveAction}" />
+      </h:form>
+
+      <h:form>
+         <h:panelGrid border="0" columns="3" cellpadding="5">
+
+            <h:outputText value="Id du jeu" />
+            <h:inputText id="id" value="#{jeuView.newJeu.idJeu}"
+                         required="true" requiredMessage="Id obligatoire" />
+            <h:message for="id" />
+
+            <h:outputText value="Nom du jeu" />
+            <h:inputText id="name" value="#{jeuView.newJeu.nomJeu}"
+                         required="true" requiredMessage="Nom obligatoire" />
+            <h:message for="name" />
+
+            <h:outputText value="Genre du jeu" />
+            <h:inputText id="genre" value="#{jeuView.newJeu.genre}"
+                         required="true" requiredMessage="Genre obligatoire" />
+            <h:message for="genre" />
+
+            <h:outputText value="Editeur"/>
+            <h:selectOneMenu value="#{jeuView.newJeu.editeur}" converter="omnifaces.SelectItemsConverter" >
+               <f:selectItems value="#{editeurView.editeur}" var="editeur"
+                              itemValue="#{editeur}" itemLabel="#{editeur.nomJeu}"/>
+            </h:selectOneMenu>
+
+            <h:outputText />
+
+            <h:commandButton value="Ajouter" action="#{jeuView.addJeu}" />
+         </h:panelGrid>
       </h:form>
 
    </f:view>

@@ -1,5 +1,7 @@
 package Projet.Jeu;
 
+import Projet.Editeur.EditeurEntity;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -12,6 +14,17 @@ public class JeuEntity {
     private String genre;
     private Integer prix;
     private Date dateSortie;
+    private EditeurEntity editeur;
+
+
+    @OneToOne
+    @JoinColumn(name = "ID_EDITEUR")
+    public EditeurEntity getEditeur() {
+        return editeur;
+    }
+    public void setEditeur(EditeurEntity editeur) {
+        this.editeur = editeur;
+    }
 
     @Id
     @Column(name = "ID_JEU")
@@ -72,11 +85,12 @@ public class JeuEntity {
                 Objects.equals(nomJeu, jeuEntity.nomJeu) &&
                 Objects.equals(genre, jeuEntity.genre) &&
                 Objects.equals(prix, jeuEntity.prix) &&
-                Objects.equals(dateSortie, jeuEntity.dateSortie);
+                Objects.equals(dateSortie, jeuEntity.dateSortie) &&
+                Objects.equals(editeur, jeuEntity.editeur);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idJeu, nomJeu, genre, prix, dateSortie);
+        return Objects.hash(idJeu, nomJeu, genre, prix, dateSortie, editeur);
     }
 }

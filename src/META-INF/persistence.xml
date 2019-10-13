@@ -4,9 +4,10 @@
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>Projet.Jeu.JeuEntity</class>
+        <class>Projet.Editeur.EditeurEntity</class>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/Jeux?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
-            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="eclipselink.jdbc.user" value="romain"/>
             <property name="eclipselink.jdbc.password" value="lasseube"/>
         </properties>

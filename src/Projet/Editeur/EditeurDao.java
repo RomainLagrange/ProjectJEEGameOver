@@ -1,16 +1,17 @@
-package Projet.Jeu;
+package Projet.Editeur;
 
-import Projet.Jeu.JeuEntity;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Objects;
 
 @Stateless
-public class JeuDAO {
+public class EditeurDao {
 
     private EntityManager entityManager;
 
@@ -22,15 +23,16 @@ public class JeuDAO {
         return entityManager;
     }
 
-    public List<JeuEntity> getAllJeu() {
-        Query requete = getEntityManager().createQuery("select j from JeuEntity j");
+    public List<EditeurEntity> getAllEditeur() {
+        Query requete = getEntityManager().createQuery("select e from EditeurEntity e");
         return requete.getResultList();
     }
 
-    public JeuEntity insert(JeuEntity u) {
+    public EditeurEntity insert(EditeurEntity u) {
         getEntityManager().getTransaction().begin();
         getEntityManager().persist(u);
         getEntityManager().getTransaction().commit();
         return u;
     }
+
 }
